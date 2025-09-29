@@ -1,14 +1,19 @@
-﻿namespace MYREVERSI.Models
+﻿using MyReversi.ModelsLogic;
+
+namespace MYREVERSI.Models
 {
     internal abstract class UserModel
     {
-        public bool IsRegistered => !string.IsNullOrWhiteSpace(Name);
+
+        protected FbData fbd = new();
+
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-
-        public static bool IsValid();
-
         public abstract void Register();
+        public abstract void Login();
+        public abstract bool CanLogin();
+        public abstract bool CanRegister();
+        public bool IsRegistered => (!string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Email));
     }
 }

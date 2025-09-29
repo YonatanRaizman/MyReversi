@@ -1,4 +1,95 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="456" height="456" fill="#512BD4" />
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" aria-labelledby="title" role="img">
+  <title id="title">Reversi icon</title>
+  <defs>
+    <linearGradient id="boardGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2e7d32"/>
+      <stop offset="1" stop-color="#1b5e20"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+
+    <!-- subtle grid pattern for the board -->
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <rect width="64" height="64" fill="transparent" />
+      <path d="M64 0L64 64 0 64" fill="none" stroke="#0b3b13" stroke-width="2" stroke-opacity="0.6"/>
+    </pattern>
+
+    <!-- highlight for discs -->
+    <radialGradient id="whiteGloss" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#eeeeee" stop-opacity="0.9"/>
+    </radialGradient>
+    <radialGradient id="blackGloss" cx="30%" cy="25%" r="70%">
+      <stop offset="0" stop-color="#666" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.98"/>
+    </radialGradient>
+  </defs>
+
+  <!-- rounded square background -->
+  <rect x="24" y="24" width="464" height="464" rx="36" ry="36" fill="url(#boardGrad)" filter="url(#softShadow)"/>
+
+  <!-- board inner square with grid -->
+  <g transform="translate(56,56)">
+    <rect width="400" height="400" rx="18" ry="18" fill="#123d1d"/>
+    <rect x="4" y="4" width="392" height="392" rx="14" ry="14" fill="url(#grid)" opacity="0.95"/>
+
+    <!-- light border glow -->
+    <rect x="0" y="0" width="400" height="400" rx="18" ry="18" fill="none" stroke="#2ec06d" stroke-width="2" stroke-opacity="0.18"/>
+
+    <!-- draw three discs: black, white, and flipping -->
+    <!-- positions chosen to be on board squares: use a 8x8 grid -> cell size 50 -->
+    <!-- black disc at (3,3) -->
+    <g transform="translate(50,50)">
+      <circle cx="150" cy="150" r="34" fill="url(#blackGloss)" stroke="#050505" stroke-width="2"/>
+      <!-- subtle rim highlight -->
+      <ellipse cx="138" cy="136" rx="12" ry="7" fill="#111" opacity="0.12"/>
+    </g>
+
+    <!-- white disc at (5,4) -->
+    <g transform="translate(50,50)">
+      <circle cx="250" cy="200" r="34" fill="url(#whiteGloss)" stroke="#dcdcdc" stroke-width="2"/>
+      <ellipse cx="236" cy="184" rx="14" ry="8" fill="#fff" opacity="0.85"/>
+    </g>
+
+    <!-- flipping disc: half white / half black with a slight tilt -->
+    <g transform="translate(50,50)">
+      <g transform="translate(200,120) rotate(-18)">
+        <defs>
+          <clipPath id="halfClip">
+            <path d="M0 -34 A34 34 0 1 1 0 34 L0 -34 Z" transform="translate(0,0)"/>
+          </clipPath>
+        </defs>
+        <!-- base black half -->
+        <circle cx="0" cy="0" r="34" fill="url(#blackGloss)" stroke="#050505" stroke-width="2"/>
+        <!-- white half clipped -->
+        <g clip-path="url(#halfClip)">
+          <circle cx="0" cy="0" r="34" fill="url(#whiteGloss)"/>
+        </g>
+        <!-- rim and small shine to emphasize flip -->
+        <circle cx="0" cy="0" r="34" fill="none" stroke="#000" stroke-opacity="0.15" stroke-width="1.5"/>
+        <ellipse cx="-8" cy="-12" rx="10" ry="6" fill="#fff" opacity="0.7" transform="rotate(-12)"/>
+      </g>
+    </g>
+
+    <!-- minimalistic corner markers to hint board squares -->
+    <g stroke="#0b3b13" stroke-width="2" stroke-linecap="round" stroke-opacity="0.5">
+      <path d="M0 0 L0 16" transform="translate(30,30)"/>
+      <path d="M0 0 L16 0" transform="translate(30,30)"/>
+
+      <path d="M0 0 L0 16" transform="translate(370,30)"/>
+      <path d="M0 0 L-16 0" transform="translate(402,30)"/>
+
+      <path d="M0 0 L0 -16" transform="translate(30,370)"/>
+      <path d="M0 0 L16 0" transform="translate(30,402)"/>
+
+      <path d="M0 0 L0 -16" transform="translate(402,402)"/>
+      <path d="M0 0 L-16 0" transform="translate(402,402)"/>
+    </g>
+  </g>
+
+  <!-- small outer decorative stroke -->
+  <rect x="24" y="24" width="464" height="464" rx="36" ry="36" fill="none" stroke="#000" stroke-opacity="0.06"/>
 </svg>
