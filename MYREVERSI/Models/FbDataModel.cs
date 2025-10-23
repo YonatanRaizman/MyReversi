@@ -2,7 +2,7 @@
 using Firebase.Auth.Providers;
 using Plugin.CloudFirestore;
 
-namespace MYREVERSI.Models
+namespace MyReversi.Models
 {
     abstract class FbDataModel
     {

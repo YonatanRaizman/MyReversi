@@ -1,9 +1,14 @@
-﻿using MYREVERSI.Models;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using MyReversi.Models;
+using System.Threading.Tasks;
 
-namespace MYREVERSI.ModelsLogic
+namespace MyReversi.ModelsLogic
 {
     internal class User : UserModel
     {
+        public Action<object?, EventArgs> OnAuthCompleted { get; internal set; }
+
         public override void Register()
         {
             fbd.CreateUserWithEmailAndPasswordAsync(Email, Password,Name,OnComplete);
@@ -12,9 +17,39 @@ namespace MYREVERSI.ModelsLogic
         private void OnComplete(Task task)
         {
             if (task.IsCompletedSuccessfully)
+            {
                 SaveToPreferences();
+                OnAuthCompleted?.Invoke(this, EventArgs.Empty);
+            }
+            else if (task.Exception != null)
+            {
+                string msg = task.Exception.Message;
+                ShowAlert(GetFirebaseErrorMessage(msg));
+            }
             else
-                Shell.Current.DisplayAlert(Strings.CreatUserError, task.Exception?.Message, Strings.Ok);
+                ShowAlert(Strings.RegistrationFailed);
+        }
+
+        private static void ShowAlert(string msg)
+        {
+            MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                Toast.Make(msg,ToastDuration.Long).Show();
+            });
+        }
+
+        public override string GetFirebaseErrorMessage(string msg)
+        {
+            if (msg.Contains(Strings.ErrMessageReason))
+            {
+                if (msg.Contains(Strings.EmailExists))
+                    return Strings.EmailExistsErrorMsg;
+                if (msg.Contains(Strings.InvalidEmailAddress))
+                    return Strings.InvalidEmailErrorMessage;
+                if (msg.Contains(Strings.WeakPassword))
+                    return Strings.WeakPasswordErrorMessage;
+            }
+            return Strings.UnknownErrorMessage;
         }
 
         private void SaveToPreferences()

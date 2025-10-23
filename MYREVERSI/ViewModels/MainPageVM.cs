@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using MYREVERSI.ModelsLogic;
+using MyReversi.ModelsLogic;
 
 namespace MYREVERSI.ViewModels
 {

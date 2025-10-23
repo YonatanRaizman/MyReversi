@@ -1,4 +1,4 @@
-﻿namespace MYREVERSI.Models
+﻿namespace MyReversi.Models
 {
     internal class Keys
     {

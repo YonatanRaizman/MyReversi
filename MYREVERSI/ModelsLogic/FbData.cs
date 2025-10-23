@@ -1,7 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Firebase.Auth.Requests;
-using MYREVERSI.Models;
+using MyReversi.Models;
 using Plugin.CloudFirestore;
 namespace MyReversi.ModelsLogic
 {
@@ -42,10 +42,6 @@ namespace MyReversi.ModelsLogic
             {
                 return facl.User.Uid;
             }
-        }
-
-        public string AuthDomain()
-        {
         }
     }
 }

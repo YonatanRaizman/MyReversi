@@ -1,10 +1,23 @@
-﻿namespace MYREVERSI.Models
+﻿namespace MyReversi.Models
 {
     internal static class Strings
     {
         public const string Name = "Name";
         public const string Register = "Register";
+        public const string Password = "Password";
+        public const string Email = "Email";
         public const string CreatUserError = "Creat User Error";
         public const string Ok = "Ok";
+        public const string Login = "Login";
+        public const string RegistrationFailed = "Registration Failed";
+        public const string UnknownErrorMessage = "Unknown Error";
+        public const string WeakPassword = "WeakPassword";
+        public const string WeakPasswordErrorMessage = "Password needs to be at least 6 charecters long";
+        public const string InvalidEmailErrorMessage = "Invalid Email address";
+        public const string ErrMessageReason = "Reason";
+        public const string EmailExists = "EmailExists";
+        public const string InvalidEmailAddress = "InvalidEmailAddress";
+        public const string EmailExistsErrorMsg = "This email is already in use";
+        public const string InvalidLoginErrorMsg = "Email or password is incorrect";
     }
 }
