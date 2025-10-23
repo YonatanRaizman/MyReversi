@@ -7,16 +7,7 @@ namespace MyReversi.ModelsLogic
 {
     class FbData : FbDataModel
     {
-        public FbData()
-        {
-            FirebaseAuthConfig fac = new()
-            {
-                ApiKey = Keys.FbApiKey,
-                Providers = [new EmailProvider()]
-            };
-            facl = new FirebaseAuthClient(fac);
-            fdb = CrossCloudFirestore.Current.Instance;
-        }
+       
         public override async void CreateUserWithEmailAndPasswordAsync(string email, string password, string name, Action<System.Threading.Tasks.Task> OnComplete)
         {
             await facl.CreateUserWithEmailAndPasswordAsync(email, password, name).ContinueWith(OnComplete);

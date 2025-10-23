@@ -1,91 +1,10 @@
-﻿ u<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="MyReversi.Views.RegisterPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:m="clr-namespace:MyReversi.Models"
     xmlns:vm="clr-namespace:MyReversi.ViewModels"
-    x:DataType="vm:RegisterPageVM"
-    Title="RegisterPage">
-
-    <VerticalStackLayout
-        Padding="30"
-        Spacing="25"
-        VerticalOptions="Center">
-        <Label  
-            FontAttributes="Bold"  
-            FontSize="60"  
-            TextColor="Black"  
-            HorizontalOptions="Center" 
-            Text="{x:Static m:Strings.Register}" />
-        <Label 
-            FontAttributes="Bold"             
-            FontFamily="MaterialSymbols"            
-            FontSize="45"             
-            TextColor="Black"        
-            HorizontalOptions="Center"
-            Text="{StaticResource IconEncrypted_add_circle}" />
-        <Border  
-            Padding="10"                 
-            Stroke="Green"                
-            StrokeShape="RoundRectangle 15" 
-            StrokeThickness="1">
-            <Entry 
-                FontSize="18"
-                Placeholder="{x:Static m:Strings.Name}" 
-                Text="{Binding UserName}" 
-                Margin="6"/>
-        </Border>
-        <Border               
-            Padding="1"                    
-            Stroke="Green"                    
-            StrokeShape="RoundRectangle 15"     
-            StrokeThickness="1">
-            <Grid
-                Padding="10"
-                ColumnDefinitions="*,Auto"
-                VerticalOptions="Center">
-                <Entry 
-                    FontSize="18"
-                    Placeholder="{x:Static m:Strings.Password}" 
-                    Text="{Binding Password}" 
-                    IsPassword="{Binding IsPassword}" />
-                <Button
-                    BackgroundColor="Transparent"         
-                    BorderWidth="0"          
-                    Command="{Binding ToggleIsPasswordCommand}"           
-                    FontFamily="MaterialSymbols"           
-                    FontSize="24"           
-                    Style="{StaticResource IconButtonStyle}"
-                    HorizontalOptions="End"
-                    Text="{Binding IsPassword, Converter={StaticResource passwordIconConvert}}"
-                    TextColor="Black"
-                    VerticalOptions="Center" />
-            </Grid>
-        </Border>
-        <Border               
-            Padding="10"                    
-            Stroke="Green"                    
-            StrokeShape="RoundRectangle 15"     
-            StrokeThickness="1">
-            <Entry 
-                FontSize="18"
-                Placeholder="{x:Static m:Strings.Email}" 
-                Text="{Binding Email}" 
-                Margin="6"/>
-        </Border>
-        <Button 
-            Command="{Binding RegisterCommand}" 
-            Text="{x:Static m:Strings.Register}"
-            CornerRadius="20"
-            FontSize="30"
-            HeightRequest="70"
-            TextColor="White">
-            <Button.ImageSource>
-                <FontImageSource Glyph="{StaticResource IconPerson_add}">
-                    <FontImageSource.FontFamily>MaterialSymbols</FontImageSource.FontFamily>
-                </FontImageSource>
-            </Button.ImageSource>
-        </Button>
-    </VerticalStackLayout>
+    Title="Register Page"
+    x:DataType="vm:RegisterPageVM">
 </ContentPage>

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1064887022213",
-    "project_id": "myreversi",
-    "storage_bucket": "myreversi.firebasestorage.app"
+    "project_number": "1009600820719",
+    "project_id": "myreversi-47437",
+    "storage_bucket": "myreversi-47437.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1064887022213:android:12a6155010bd1104e22fec",
+        "mobilesdk_app_id": "1:1009600820719:android:908c74cfe639b199b7321a",
         "android_client_info": {
           "package_name": "com.meitar.myreversi"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAKJmOSFgi3tYU90SP3rtlZBi3RsEcXZlQ"
+          "current_key": "AIzaSyDB4x8Ft_EMCaKdukScj4i3ExDOpbXB7WI"
         }
       ],
       "services": {

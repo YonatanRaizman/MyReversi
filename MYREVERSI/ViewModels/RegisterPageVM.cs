@@ -6,7 +6,7 @@ using CommunityToolkit.Maui.Core;
 
 namespace MyReversi.ViewModels
 {
-    internal class RegisterPageVM : ObservableObject
+    internal partial class RegisterPageVM : ObservableObject
     {
         public ICommand ToggleIsPasswordCommand { get; }
         public bool IsPassword { get; set; } = true;
