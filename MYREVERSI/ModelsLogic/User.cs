@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MyReversi.ModelsLogic
 {
-    internal class User : UserModel
+    internal class User : UserModel /// change
     {
         public Action<object?, EventArgs> OnAuthCompleted { get; internal set; }
 
