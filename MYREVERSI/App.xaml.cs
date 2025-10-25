@@ -1,4 +1,6 @@
-﻿using MyReversi.Views;
+﻿using MyReversi.ModelsLogic;
+using MyReversi.NewFolder;
+using MyReversi.Views;
 
 namespace MyReversi
 {
@@ -7,8 +9,9 @@ namespace MyReversi
         public App()
         {
             InitializeComponent();
-
-            MainPage = new RegisterPage();
+            User user = new();
+            Page page = user.IsRegistered ? new LoginPage() : new RegisterPage();
+            MainPage = page;
         }
     }
 }

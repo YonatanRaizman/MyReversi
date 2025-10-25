@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using MyReversi.ModelsLogic;
 
-namespace MYREVERSI.ViewModels
+namespace MyReversi.ViewModels
 {
     internal class MainPageVM
     {

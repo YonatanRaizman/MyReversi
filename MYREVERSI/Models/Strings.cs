@@ -15,9 +15,9 @@
         public const string WeakPasswordErrorMessage = "Password needs to be at least 6 charecters long";
         public const string InvalidEmailErrorMessage = "Invalid Email address";
         public const string ErrMessageReason = "Reason";
-        public const string EmailExists = "EmailExists";
-        public const string InvalidEmailAddress = "InvalidEmailAddress";
-        public const string EmailExistsErrorMsg = "This email is already in use";
-        public const string InvalidLoginErrorMsg = "Email or password is incorrect";
+        public const string EmailExists = "Email Exists"; 
+        public const string InvalidEmailAddress = "Invalid Email Address";
+        public const string EmailExistsErrorMessage = "This email is already in use";
+        public const string InvalidLoginErrorMessage = "Email or password is incorrect";
     }
 }

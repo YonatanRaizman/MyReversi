@@ -43,7 +43,7 @@ namespace MyReversi.ModelsLogic
             if (msg.Contains(Strings.ErrMessageReason))
             {
                 if (msg.Contains(Strings.EmailExists))
-                    return Strings.EmailExistsErrorMsg;
+                    return Strings.EmailExistsErrorMessage;
                 if (msg.Contains(Strings.InvalidEmailAddress))
                     return Strings.InvalidEmailErrorMessage;
                 if (msg.Contains(Strings.WeakPassword))
