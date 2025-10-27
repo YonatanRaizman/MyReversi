@@ -6,7 +6,7 @@ namespace MyReversi.Models
     {
 
         protected FbData fbd = new();
-
+        public EventHandler? OnAuthCompleted;
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
@@ -15,6 +15,6 @@ namespace MyReversi.Models
         public abstract bool CanLogin();
         public abstract string GetFirebaseErrorMessage(string msg);
         public abstract bool CanRegister();
-        public bool IsRegistered => (!string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Email));
+        public bool IsRegistered => false;
     }
 }

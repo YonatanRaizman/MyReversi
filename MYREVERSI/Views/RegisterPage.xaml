@@ -12,74 +12,74 @@
         Padding="30"
         Spacing="25"
         VerticalOptions="Center">
-        <Label  
-            FontAttributes="Bold"  
-            FontSize="60"  
-            TextColor="Black"  
-            HorizontalOptions="Center" 
-            Text="{x:Static m:Strings.Register}" />
-        <Label 
-            FontAttributes="Bold"             
-            FontFamily="MaterialSymbols"            
-            FontSize="45"             
-            TextColor="green"        
+        <Label
+            FontAttributes="Bold"
+            FontSize="60"
             HorizontalOptions="Center"
-            Text="{StaticResource IconEncrypted_add_circle}" />
-        <Border  
-            Padding="10"                 
-            Stroke="green"                
-            StrokeShape="RoundRectangle 15" 
+            Text="{x:Static m:Strings.Register}"
+            TextColor="Black" />
+        <Label
+            FontAttributes="Bold"
+            FontFamily="MaterialSymbols"
+            FontSize="45"
+            HorizontalOptions="Center"
+            Text="{StaticResource IconEncrypted_add_circle}"
+            TextColor="green" />
+        <Border
+            Padding="10"
+            Stroke="green"
+            StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
-            <Entry 
+            <Entry
+                Margin="6"
                 FontSize="18"
-                Placeholder="{x:Static m:Strings.Name}" 
-                Text="{Binding UserName}" 
-                Margin="6"/>
+                Placeholder="{x:Static m:Strings.Name}"
+                Text="{Binding UserName}" />
         </Border>
-        <Border               
-            Padding="1"                    
-            Stroke="Green"                    
-            StrokeShape="RoundRectangle 15"     
+        <Border
+            Padding="1"
+            Stroke="Green"
+            StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Grid
                 Padding="10"
                 ColumnDefinitions="*,Auto"
                 VerticalOptions="Center">
-                <Entry 
+                <Entry
                     FontSize="18"
-                    Placeholder="{x:Static m:Strings.Password}" 
-                    Text="{Binding Password}" 
-                    IsPassword="{Binding IsPassword}" />
+                    IsPassword="{Binding IsPassword}"
+                    Placeholder="{x:Static m:Strings.Password}"
+                    Text="{Binding Password}" />
                 <Button
-                    BackgroundColor="Transparent"         
-                    BorderWidth="0"          
-                    Command="{Binding ToggleIsPasswordCommand}"           
-                    FontFamily="MaterialSymbols"           
-                    FontSize="24"           
-                    Style="{StaticResource IconButtonStyle}"
+                    BackgroundColor="Transparent"
+                    BorderWidth="0"
+                    Command="{Binding ToggleIsPasswordCommand}"
+                    FontFamily="MaterialSymbols"
+                    FontSize="24"
                     HorizontalOptions="End"
+                    Style="{StaticResource IconButtonStyle}"
                     Text="{Binding IsPassword, Converter={StaticResource passwordIconConvert}}"
-                    TextColor="DarkCyan"
+                    TextColor="Green"
                     VerticalOptions="Center" />
             </Grid>
         </Border>
-        <Border               
-            Padding="10"                    
-            Stroke="Green"                    
-            StrokeShape="RoundRectangle 15"     
+        <Border
+            Padding="10"
+            Stroke="Green"
+            StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
-            <Entry 
+            <Entry
+                Margin="6"
                 FontSize="18"
-                Placeholder="{x:Static m:Strings.Email}" 
-                Text="{Binding Email}" 
-                Margin="6"/>
+                Placeholder="{x:Static m:Strings.Email}"
+                Text="{Binding Email}" />
         </Border>
-        <Button 
-            Command="{Binding RegisterCommand}" 
-            Text="{x:Static m:Strings.Register}"
+        <Button
+            Command="{Binding RegisterCommand}"
             CornerRadius="20"
             FontSize="30"
             HeightRequest="70"
+            Text="{x:Static m:Strings.Register}"
             TextColor="White">
             <Button.ImageSource>
                 <FontImageSource Glyph="{StaticResource IconPerson_add}">

@@ -12,10 +12,12 @@ namespace MyReversi.ViewModels
         public bool IsPassword { get; set; } = true;
         public ICommand RegisterCommand { get; }
         private readonly User user = new();
+
         public bool CanRegister()
         {
             return user.CanRegister();
         }
+
         public RegisterPageVM()
         {
             RegisterCommand = new Command(Register, CanRegister);

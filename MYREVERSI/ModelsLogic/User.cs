@@ -1,17 +1,16 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using MyReversi.Models;
-using System.Threading.Tasks;
 
 namespace MyReversi.ModelsLogic
 {
-    internal class User : UserModel /// change
+    internal class User : UserModel
     {
-        public Action<object?, EventArgs> OnAuthCompleted { get; internal set; }
+        public new Action<object?, EventArgs> OnAuthCompleted { get; internal set; }
 
         public override void Register()
         {
-            fbd.CreateUserWithEmailAndPasswordAsync(Email, Password,Name,OnComplete);
+            fbd.CreateUserWithEmailAndPasswordAsync(Email, Password, Name, OnComplete);
         }
 
         private void OnComplete(Task task)
@@ -40,18 +39,14 @@ namespace MyReversi.ModelsLogic
 
         public override string GetFirebaseErrorMessage(string msg)
         {
-            if (msg.Contains(Strings.ErrMessageReason))
-            {
-                if (msg.Contains(Strings.EmailExists))
-                    return Strings.EmailExistsErrorMessage;
-                if (msg.Contains(Strings.InvalidEmailAddress))
-                    return Strings.InvalidEmailErrorMessage;
-                if (msg.Contains(Strings.WeakPassword))
-                    return Strings.WeakPasswordErrorMessage;
-            }
-            return Strings.UnknownErrorMessage;
-        }
+            return msg.Contains(Strings.ErrMessageReason) ?
+                msg.Contains(Strings.EmailExists) ? Strings.EmailExistsErrorMessage :
+                msg.Contains(Strings.InvalidEmailAddress) ? Strings.InvalidEmailErrorMessage :
+                msg.Contains(Strings.WeakPassword) ? Strings.WeakPasswordErrorMessage :
+                msg.Contains(Strings.RegistrationFailed) ? Strings.RegistrationFailed :
+                Strings.UnknownErrorMessage : Strings.UnknownErrorMessage;
 
+        }
         private void SaveToPreferences()
         {
             Preferences.Set(Keys.NameKey, Name);

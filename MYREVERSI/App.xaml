@@ -5,10 +5,10 @@
              x:Class="MyReversi.App">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
+            <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+            <ResourceDictionary Source="Resources/Styles/Icons.xaml" />
+            <ResourceDictionary Source="Resources/Styles/Converters.xaml" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
