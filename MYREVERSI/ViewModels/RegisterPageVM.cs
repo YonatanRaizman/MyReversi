@@ -1,8 +1,6 @@
 ﻿using System.Windows.Input;
 using MyReversi.Models;
 using MyReversi.ModelsLogic;
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core;
 
 namespace MyReversi.ViewModels
 {
@@ -75,6 +73,16 @@ namespace MyReversi.ViewModels
                 (RegisterCommand as Command)?.ChangeCanExecute();
             }
 
+        }
+
+        public string ForgotYourPassword
+        {
+            get => user.ForgotYourPassword;
+            set
+            {
+                user.ForgotYourPassword = value;
+                (RegisterCommand as Command)?.ChangeCanExecute();
+            }
         }
     }
 }

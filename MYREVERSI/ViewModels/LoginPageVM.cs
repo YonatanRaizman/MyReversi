@@ -1,6 +1,5 @@
 ﻿using MyReversi.Models;
 using MyReversi.ModelsLogic;
-using System;
 using System.Windows.Input;
 
 namespace MyReversi.ViewModels
@@ -53,6 +52,7 @@ namespace MyReversi.ViewModels
             }
 
         }
+
         public string Password
         {
             get => user.Password;
@@ -63,6 +63,7 @@ namespace MyReversi.ViewModels
             }
 
         }
+
         public string Email
         {
             get => user.Email;
@@ -72,6 +73,16 @@ namespace MyReversi.ViewModels
                 (LoginCommand as Command)?.ChangeCanExecute();
             }
 
+        }
+
+        public string ForgotYourPassword
+        {
+            get => user.ForgotYourPassword;
+            set
+            {
+                user.ForgotYourPassword = value;
+                (LoginCommand as Command)?.ChangeCanExecute();
+            }
         }
 
     }

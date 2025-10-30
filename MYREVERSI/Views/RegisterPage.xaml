@@ -16,14 +16,14 @@
         TranslationY="-10">
         <Label
             FontAttributes="Bold"
-            FontSize="60"
+            FontSize="65"
             HorizontalOptions="Center"
             Text="{x:Static m:Strings.Register}"
             TextColor="White" 
-            TranslationY="-10" />
+            TranslationY="-40" />
         <Border
             Padding="10"
-            Stroke="green"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Entry
@@ -32,11 +32,10 @@
                 Placeholder="{x:Static m:Strings.Name}"
                 Text="{Binding UserName}"
                 TextColor="White"/>
-
         </Border>
         <Border
             Padding="1"
-            Stroke="Green"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Grid
@@ -58,13 +57,13 @@
                     HorizontalOptions="End"
                     Style="{StaticResource IconButtonStyle}"
                     Text="{Binding IsPassword, Converter={StaticResource passwordIconConvert}}"
-                    TextColor="Green"
+                    TextColor="White"
                     VerticalOptions="Center" />
             </Grid>
         </Border>
         <Border
             Padding="10"
-            Stroke="Green"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Entry

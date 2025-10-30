@@ -19,5 +19,6 @@
         public const string InvalidEmailAddress = "InvalidEmailAddress";
         public const string EmailExistsErrorMessage = "This email is already in use";
         public const string InvalidLoginErrorMessage = "Email or password is incorrect";
+        public const string ForgotYourPassword = "Forgot Your Password?";
     }
 }
