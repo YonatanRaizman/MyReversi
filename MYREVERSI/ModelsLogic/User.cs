@@ -39,12 +39,12 @@ namespace MyReversi.ModelsLogic
 
         public override string GetFirebaseErrorMessage(string msg)
         {
-            return msg.Contains(Strings.ErrMessageReason) ?
+            return msg.Contains(Strings.ErrorMessageReason) ?
                 msg.Contains(Strings.EmailExists) ? Strings.EmailExistsErrorMessage :
                 msg.Contains(Strings.InvalidEmailAddress) ? Strings.InvalidEmailErrorMessage :
                 msg.Contains(Strings.WeakPassword) ? Strings.WeakPasswordErrorMessage :
                 msg.Contains(Strings.RegistrationFailed) ? Strings.RegistrationFailed :
-                Strings.UnknownErrorMessage : Strings.UnknownErrorMessage;
+                Strings.UserNotFound : Strings.UserNotFound;
 
         }
         private void SaveToPreferences()

@@ -6,7 +6,9 @@
     xmlns:m="clr-namespace:MyReversi.Models"
     xmlns:vm="clr-namespace:MyReversi.ViewModels"
     Title="Login Page"
-    x:DataType="vm:LoginPageVM">
+    x:DataType="vm:LoginPageVM"
+    BackgroundImageSource="reversi_bg.png">
+    
     <VerticalStackLayout 
         Padding="30"
         Spacing="25"
@@ -78,6 +80,7 @@
             Text="{x:Static m:Strings.Login}"
             CornerRadius="20"
             FontSize="30"
+            BackgroundColor="Black"
             HeightRequest="60"
             TextColor="White">
             <Button.ImageSource>
