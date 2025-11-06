@@ -26,7 +26,7 @@ namespace MyReversi.ModelsLogic
                 ShowAlert(GetFirebaseErrorMessage(msg));
             }
             else
-                ShowAlert(Strings.RegistrationFailed);
+                ShowAlert(Keys.RegistrationFailed);
         }
 
         private static void ShowAlert(string msg)
@@ -39,12 +39,12 @@ namespace MyReversi.ModelsLogic
 
         public override string GetFirebaseErrorMessage(string msg)
         {
-            return msg.Contains(Strings.ErrorMessageReason) ?
-                msg.Contains(Strings.EmailExists) ? Strings.EmailExistsErrorMessage :
-                msg.Contains(Strings.InvalidEmailAddress) ? Strings.InvalidEmailErrorMessage :
-                msg.Contains(Strings.WeakPassword) ? Strings.WeakPasswordErrorMessage :
-                msg.Contains(Strings.RegistrationFailed) ? Strings.RegistrationFailed :
-                Strings.UserNotFound : Strings.UserNotFound;
+            return msg.Contains(Keys.ErrorMessageReason) ?
+                msg.Contains(Keys.EmailExists) ? Keys.EmailExistsErrorMessage :
+                msg.Contains(Keys.InvalidEmailAddress) ? Keys.InvalidEmailErrorMessage :
+                msg.Contains(Keys.WeakPassword) ? Keys.WeakPasswordErrorMessage :
+                msg.Contains(Keys.RegistrationFailed) ? Keys.RegistrationFailed :
+                Keys.UserNotFound : Keys.UserNotFound;
 
         }
         private void SaveToPreferences()

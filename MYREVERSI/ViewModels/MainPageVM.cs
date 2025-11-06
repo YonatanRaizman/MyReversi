@@ -1,56 +1,48 @@
-﻿using System.Windows.Input;
+﻿using MyReversi.Models;
 using MyReversi.ModelsLogic;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MyReversi.ViewModels
 {
-    internal class MainPageVM
+    internal partial class MainPageVM : ObservableObject
     {
-        private readonly User user = new();
-        public ICommand RegisterCommand { get; }
+        private readonly Games games = new();
+        public ICommand AddGameCommand => new Command(AddGame);
+        public bool IsBusy => games.IsBusy;
+        public ObservableCollection<GameSize>? GameSizes { get => games.GameSizes; set => games.GameSizes = value; }
+        public GameSize SelectedGameSize { get => games.SelectedGameSize; set => games.SelectedGameSize = value; }
+        public ObservableCollection<Game>? GamesList => games.GamesList;
+
+        private void AddGame()
+        {
+            games.AddGame();
+            OnPropertyChanged(nameof(IsBusy));
+        }
 
         public MainPageVM()
         {
-            RegisterCommand = new Command(Register, CanRegister);
+            games.OnGameAdded += OnGameAdded;
+            games.OnGamesChanged += OnGamesChanged;
         }
 
-        public bool CanRegister()
+        private void OnGamesChanged(object? sender, EventArgs e)
         {
-            return !string.IsNullOrEmpty(user.Name) && !string.IsNullOrEmpty(user.Email) && !string.IsNullOrEmpty(user.Password);
+            OnPropertyChanged(nameof(GamesList));
         }
 
-        private void Register()
+        private void OnGameAdded(object? sender, bool e)
         {
-            user.Register();
+            OnPropertyChanged(nameof(IsBusy));
+        }
+        internal void AddSnapshotListener()
+        {
+            games.AddSnapshotListener();
         }
 
-        public string Name
+        internal void RemoveSnapshotListener()
         {
-            get => user.Name;
-            set
-            {
-                user.Name = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
-            }
-        }
-
-        public string Email
-        {
-            get => user.Email;
-            set
-            {
-                user.Email = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
-            }
-        }
-
-        public string Password
-        {
-            get => user.Password;
-            set
-            {
-                user.Password = value;
-                (RegisterCommand as Command)?.ChangeCanExecute();
-            }
+            games.RemoveSnapshotListener();
         }
     }
 }
