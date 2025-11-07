@@ -27,7 +27,7 @@ namespace MyReversi.ViewModels
             {
                 if (Application.Current != null)
                 {
-                    Application.Current.MainPage = new AppShell();
+                    Application.Current.MainPage = new MainPage();
                 }
             });
         }
@@ -74,16 +74,5 @@ namespace MyReversi.ViewModels
             }
 
         }
-
-        public string ForgotYourPassword
-        {
-            get => user.ForgotYourPassword;
-            set
-            {
-                user.ForgotYourPassword = value;
-                (LoginCommand as Command)?.ChangeCanExecute();
-            }
-        }
-
     }
 }

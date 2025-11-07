@@ -16,6 +16,6 @@ namespace MyReversi.Models
         public abstract bool CanLogin();
         public abstract string GetFirebaseErrorMessage(string msg);
         public abstract bool CanRegister();
-        public bool IsRegistered => false;
+        public bool IsRegistered => (!string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Password) && !string.IsNullOrWhiteSpace(Email));
     }
 }

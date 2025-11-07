@@ -13,5 +13,7 @@
         public const string AddGame = "Add Game";
         public const string GameSize = "Game Size";
         public const string SelectGameSize = "Select Game Size";
+
+        public const string JoinGameErr = "Error joining game";
     }
 }
