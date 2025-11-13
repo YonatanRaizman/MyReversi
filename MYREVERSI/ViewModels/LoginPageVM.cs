@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace MyReversi.ViewModels
 {
-    internal class LoginPageVM : ObservableObject
+    internal partial class LoginPageVM : ObservableObject
     {
         public ICommand ToggleIsPasswordCommand { get; }
         public bool IsPassword { get; set; } = true;

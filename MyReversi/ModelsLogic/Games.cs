@@ -1,27 +1,44 @@
 ﻿using MyReversi.Models;
 using Plugin.CloudFirestore;
+using CommunityToolkit.Maui.Alerts;
 
 namespace MyReversi.ModelsLogic
 {
-    internal class Games : GamesModel
+    public class Games : GamesModel
     {
-        internal void AddGame()
+        public void AddGame()
         {
             IsBusy = true;
-            currentGame = new(SelectedGameSize);
-            currentGame.IsHost = true;
+            currentGame = new(SelectedGameSize)
+            {
+                IsHostUser = true
+            };
+            currentGame.OnGameDeleted += OnGameDeleted;
             currentGame.SetDocument(OnComplete);
         }
+
+        private void OnGameDeleted(object? sender, EventArgs e)
+        {
+            MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                Toast.Make(Strings.GameDeleted, CommunityToolkit.Maui.Core.ToastDuration.Long, 14).Show();
+            });
+        }
+
         private void OnComplete(Task task)
         {
             IsBusy = false;
             OnGameAdded?.Invoke(this, currentGame!);
         }
-        public void AddSnapshotListener()
+        public Games()
+        {
+
+        }
+        public override void AddSnapshotListener()
         {
             ilr = fbd.AddSnapshotListener(Keys.GamesCollection, OnChange!);
         }
-        public void RemoveSnapshotListener()
+        public override void RemoveSnapshotListener()
         {
             ilr?.Remove();
         }

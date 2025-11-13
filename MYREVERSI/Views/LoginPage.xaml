@@ -46,8 +46,8 @@
 
                 <Entry
                     FontSize="18"
-                    IsPassword="{Binding IsPassword}"
                     Placeholder="{x:Static m:Strings.Password}"
+                    IsPassword="{Binding IsPassword}"
                     Text="{Binding Password}" />
                 <Button
                     BackgroundColor="Transparent"

@@ -31,7 +31,7 @@ namespace MyReversi.ViewModels
                     games.CurrentGame = value;
                     MainThread.InvokeOnMainThreadAsync(() =>
                     {
-                        Shell.Current.Navigation.PushAsync(new GamePage(value));
+                        Shell.Current.Navigation.PushAsync(new GamePage(value), true);
                     });
                 }
             }

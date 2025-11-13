@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace MyReversi.Models
 {
-    internal class GamesModel
+    public abstract class GamesModel
     {
         protected FbData fbd = new();
         protected IListenerRegistration? ilr;
@@ -17,5 +17,7 @@ namespace MyReversi.Models
         public GameSize SelectedGameSize { get; set; } = new GameSize();
         protected Game? currentGame;
         public Game? CurrentGame { get => CurrentGame; set => currentGame = value; }
+        public abstract void AddSnapshotListener();
+        public abstract void RemoveSnapshotListener();
     }
 }
