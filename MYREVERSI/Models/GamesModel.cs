@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace MyReversi.Models
 {
-    public class GamesModel
+    internal class GamesModel
     {
         protected FbData fbd = new();
         protected IListenerRegistration? ilr;

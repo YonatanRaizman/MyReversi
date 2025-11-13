@@ -1,6 +1,6 @@
 ﻿namespace MyReversi.Models
 {
-    public class GameSize
+    internal class GameSize
     {
         public int Size { get; set; }
         public string DisplayName => $"{Size} x {Size}";

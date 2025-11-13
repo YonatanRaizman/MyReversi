@@ -3,13 +3,13 @@ using Plugin.CloudFirestore;
 
 namespace MyReversi.ModelsLogic
 {
-    public class Games : GamesModel
+    internal class Games : GamesModel
     {
         internal void AddGame()
         {
             IsBusy = true;
             currentGame = new(SelectedGameSize);
-            currentGame.IsHostUser = true;
+            currentGame.IsHost = true;
             currentGame.SetDocument(OnComplete);
         }
         private void OnComplete(Task task)
