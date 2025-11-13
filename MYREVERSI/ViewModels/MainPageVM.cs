@@ -10,17 +10,17 @@ namespace MyReversi.ViewModels
     {
         private readonly Games games = new();
 
+        private readonly MainPageML mainPageML = new();
+
         public ICommand AddGameCommand => new Command(AddGame);
 
         public bool IsBusy => games.IsBusy;
 
-        public ObservableCollection<GameSize>? GameSizes { get => games.GameSizes; set => games.GameSizes = value; }
-
-        public GameSize SelectedGameSize { get => games.SelectedGameSize; set => games.SelectedGameSize = value; }
-
         public ObservableCollection<Game>? GamesList => games.GamesList;
 
-        public Game SelectedItem
+        public ICommand InstructionsCommand { get; private set; }
+
+        public Game? SelectedItem
         {
             get =>  games.CurrentGame;
 
@@ -45,8 +45,14 @@ namespace MyReversi.ViewModels
 
         public MainPageVM()
         {
+            InstructionsCommand = new Command(ShowInstructionsPrompt);
             games.OnGameAdded += OnGameAdded;
             games.OnGamesChanged += OnGamesChanged;
+        }
+
+        public void ShowInstructionsPrompt(object obj)
+        {
+            mainPageML.ShowInstructionsPrompt(obj);
         }
 
         private void OnGameAdded(object? sender, Game game)

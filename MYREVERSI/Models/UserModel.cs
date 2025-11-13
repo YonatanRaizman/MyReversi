@@ -4,7 +4,6 @@ namespace MyReversi.Models
 {
     internal abstract class UserModel
     {
-
         protected FbData fbd = new();
         public EventHandler? OnAuthCompleted;
         public string Name { get; set; } = string.Empty;

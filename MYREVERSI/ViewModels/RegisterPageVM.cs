@@ -30,7 +30,6 @@ namespace MyReversi.ViewModels
                 if (Application.Current != null)
                 {
                     Application.Current.MainPage = new AppShell();
-
                 }
             });
         }

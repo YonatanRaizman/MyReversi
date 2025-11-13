@@ -21,7 +21,7 @@ namespace MyReversi.Models
 
         public bool IsFull { get; set; }
 
-        public int RowSize { get; set; }
+        
         [Ignored]
 
         public abstract string OpponentName { get;}
@@ -30,7 +30,7 @@ namespace MyReversi.Models
         public string MyName { get; set; } = new User().Name;
         [Ignored]
 
-        public string RowSizeName => $"{RowSize} X {RowSize}";
+        
 
         public bool IsHostUser { get; set; }
 
@@ -41,5 +41,6 @@ namespace MyReversi.Models
         public abstract void RemoveSnapshotListener();
         public abstract void DeleteDocument(Action<System.Threading.Tasks.Task> OnComplete);
 
+        public abstract void InitGrid(Grid board);
     }
 }

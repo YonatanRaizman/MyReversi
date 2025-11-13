@@ -7,10 +7,9 @@ namespace MyReversi.ModelsLogic
     {
         public override string OpponentName => IsHostUser? GuestName : HostName;
 
-        internal Game(GameSize selectedGameSize)
+        internal Game()
         {
             HostName = new User().Name;
-            RowSize = selectedGameSize.Size;
             Created = DateTime.Now;
         }
 
@@ -19,9 +18,6 @@ namespace MyReversi.ModelsLogic
             Id = fbd.SetDocument(this, Keys.GamesCollection, Id, OnComplete);
         }
 
-        public Game()
-        {
-        }
         public void UpdateGuestUser(Action<Task> OnComplete)
         {
             GuestName = MyName;
@@ -70,5 +66,36 @@ namespace MyReversi.ModelsLogic
         {
             fbd.DeleteDocument(Keys.GamesCollection, Id, OnComplete);
         }
+
+        public override void InitGrid(Grid board)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                board.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                board.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    IndexedButton button = new(i, j);
+
+                    button.BackgroundColor = Color.FromArgb("#008000");
+
+                    button.BorderColor = Colors.Black;
+
+                    button.BorderWidth = 1;
+                    button.CornerRadius = 6;
+
+                    button.BorderColor = Colors.White;
+                    button.BorderWidth = 1;
+
+                    board.Add(button, j, i);
+                }
+            }
+        }
+
+
     }
 }
