@@ -12,43 +12,45 @@
     <VerticalStackLayout
         Padding="30"
         Spacing="25"
-        VerticalOptions="Center">
+        VerticalOptions="Center"
+        TranslationY="-10">
+
         <Label
             FontAttributes="Bold"
-            FontSize="60"
+            FontSize="65"
             HorizontalOptions="Center"
             Text="{x:Static m:Strings.Login}"
-            TextColor="Black" />
-        <Label
-            FontAttributes="Bold"
-            FontFamily="MaterialSymbols"
-            FontSize="45"
-            HorizontalOptions="Center"
-            Text="{StaticResource IconSecurity}"
-            TextColor="Black" />
+            TextColor="White"
+            TranslationY="-40" />
+
         <Border
             Padding="10"
-            Stroke="Green"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Entry
-                Margin="5"
+                Margin="6"
                 FontSize="18"
                 Placeholder="{x:Static m:Strings.Name}"
-                Text="{Binding UserName}" />
+                Text="{Binding UserName}"
+                TextColor="White" />
         </Border>
+
         <Border
-            Padding="10"
-            Stroke="Green"
+            Padding="1"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
-            <Grid>
-
+            <Grid
+                Padding="10"
+                ColumnDefinitions="*,Auto"
+                VerticalOptions="Center">
                 <Entry
                     FontSize="18"
-                    Placeholder="{x:Static m:Strings.Password}"
                     IsPassword="{Binding IsPassword}"
-                    Text="{Binding Password}" />
+                    Placeholder="{x:Static m:Strings.Password}"
+                    Text="{Binding Password}"
+                    TextColor="White" />
                 <Button
                     BackgroundColor="Transparent"
                     BorderWidth="0"
@@ -58,36 +60,31 @@
                     HorizontalOptions="End"
                     Style="{StaticResource IconButtonStyle}"
                     Text="{Binding IsPassword, Converter={StaticResource passwordIconConvert}}"
-                    TextColor="Black" />
-
+                    TextColor="White"
+                    VerticalOptions="Center" />
             </Grid>
         </Border>
 
         <Border
             Padding="10"
-            Stroke="Green"
+            Stroke="White"
             StrokeShape="RoundRectangle 15"
             StrokeThickness="1">
             <Entry
-                Margin="5"
+                Margin="6"
                 FontSize="18"
                 Placeholder="{x:Static m:Strings.Email}"
-                Text="{Binding Email}" />
+                Text="{Binding Email}"
+                TextColor="White" />
         </Border>
 
         <Button
-            BackgroundColor="Black"
             Command="{Binding LoginCommand}"
             CornerRadius="20"
             FontSize="30"
-            HeightRequest="60"
+            BackgroundColor="Black"
+            HeightRequest="70"
             Text="{x:Static m:Strings.Login}"
-            TextColor="White">
-            <Button.ImageSource>
-                <FontImageSource Glyph="{StaticResource IconLock_open_right}">
-                    <FontImageSource.FontFamily>MaterialSymbols</FontImageSource.FontFamily>
-                </FontImageSource>
-            </Button.ImageSource>
-        </Button>
+            TextColor="White" />
     </VerticalStackLayout>
 </ContentPage>

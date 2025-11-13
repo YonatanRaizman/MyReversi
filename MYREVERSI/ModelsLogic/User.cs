@@ -18,7 +18,6 @@ namespace MyReversi.ModelsLogic
             fbd.SignInWithEmailAndPasswordAsync(Email, Password, OnComplete);
         }
 
-
         public User()
         {
             Name = Preferences.Get(Keys.NameKey, string.Empty);
