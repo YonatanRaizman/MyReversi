@@ -23,9 +23,9 @@ namespace MyReversi.ModelsLogic
             ICollectionReference cr = fdb.Collection(collectonName);
             return cr.AddSnapshotListener(OnChange);
         }
-        public override IListenerRegistration AddSnapshotListener(string collectonName, string id, Plugin.CloudFirestore.DocumentSnapshotHandler OnChange)
+        public override IListenerRegistration AddSnapshotListener(string collectionName, string id, Plugin.CloudFirestore.DocumentSnapshotHandler OnChange)
         {
-            IDocumentReference cr = fdb.Collection(collectonName).Document(id);
+            IDocumentReference cr = fdb.Collection(collectionName).Document(id);
             return cr.AddSnapshotListener(OnChange);
         }
         public async void GetDocumentsWhereEqualTo(string collectonName, string fName, object fValue, Action<IQuerySnapshot> OnComplete)
