@@ -9,6 +9,7 @@
 
     <VerticalStackLayout>
         <Label HorizontalOptions="Center" Text="{Binding OpponentName}" />
+        <Label HorizontalOptions="Center" Text="{Binding StatusMessage}" Margin="50"/>
         <Grid x:Name="grdBoard" HorizontalOptions="Center" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Center"/>
         <Label HorizontalOptions="Center" Text="{Binding MyName}" />
     </VerticalStackLayout>

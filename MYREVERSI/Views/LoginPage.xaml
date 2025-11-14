@@ -12,8 +12,8 @@
     <VerticalStackLayout
         Padding="30"
         Spacing="25"
-        VerticalOptions="Center"
-        TranslationY="-10">
+        TranslationY="-10"
+        VerticalOptions="Center">
 
         <Label
             FontAttributes="Bold"
@@ -79,10 +79,10 @@
         </Border>
 
         <Button
+            BackgroundColor="Black"
             Command="{Binding LoginCommand}"
             CornerRadius="20"
             FontSize="30"
-            BackgroundColor="Black"
             HeightRequest="70"
             Text="{x:Static m:Strings.Login}"
             TextColor="White" />

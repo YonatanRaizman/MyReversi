@@ -1,4 +1,5 @@
-﻿using MyReversi.ModelsLogic;
+﻿using CommunityToolkit.Maui.Alerts;
+using MyReversi.ModelsLogic;
 using MyReversi.NewFolder;
 using MyReversi.Views;
 
@@ -10,7 +11,7 @@ namespace MyReversi
         {
             InitializeComponent();
             User user = new();
-            MainPage = user.IsRegistered ? new LoginPage() : new RegisterPage();
+            MainPage =  user.IsRegistered ? new LoginPage() : new RegisterPage();
         }
     }
 }

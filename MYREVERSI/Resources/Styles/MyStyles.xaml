@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Style x:Key="baseButton" TargetType="Button">
+        <Setter Property="BorderWidth" Value="3" />
+        <Setter Property="BorderColor" Value="Green" />
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+    <Style
+        x:Key="IconButtonStyle"
+        BasedOn="{StaticResource baseButton}"
+        TargetType="Button">
+        <Setter Property="BorderColor" Value="{AppThemeBinding Dark=White, Light=Black}" />
+    </Style>
+    <Style TargetType="Border">
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Stroke" Value="Olive" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+    </Style>
+    <Style TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="ReturnType" Value="Next" />
+        <Setter Property="TextColor" Value="Blue" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+    <Style TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="TextColor" Value="Blue"/>
+    </Style>
+</ResourceDictionary>

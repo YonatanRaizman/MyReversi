@@ -6,6 +6,7 @@
     xmlns:m="clr-namespace:MyReversi.Models"
     xmlns:vm="clr-namespace:MyReversi.ViewModels"
     x:DataType="vm:MainPageVM"
+    BackgroundImageSource="mainpagebackground.png"
     IsBusy="{Binding IsBusy}">
 
     <Shell.TitleView>

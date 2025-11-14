@@ -1,4 +1,5 @@
-﻿using MyReversi.Models;
+﻿using CommunityToolkit.Maui.Alerts;
+using MyReversi.Models;
 using MyReversi.ModelsLogic;
 using System.Windows.Input;
 
@@ -20,6 +21,7 @@ namespace MyReversi.ViewModels
             LoginCommand = new Command(Login, CanLogin);
             ToggleIsPasswordCommand = new Command(ToggleIsPassword);
             user.OnAuthCompleted += OnAuthComplete;
+           
         }
         private void OnAuthComplete(object? sender, EventArgs e)
         {

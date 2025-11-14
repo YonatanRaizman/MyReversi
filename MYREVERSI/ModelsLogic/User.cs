@@ -23,6 +23,8 @@ namespace MyReversi.ModelsLogic
             Name = Preferences.Get(Keys.NameKey, string.Empty);
             Password = Preferences.Get(Keys.PasswordKey, string.Empty);
             Email = Preferences.Get(Keys.EmailKey, string.Empty);
+           
+
         }
 
         private void OnComplete(Task task)
