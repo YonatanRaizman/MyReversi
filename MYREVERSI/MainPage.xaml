@@ -43,7 +43,7 @@
                 Command="{Binding InstructionsCommand}"
                 FontSize="20"
                 HorizontalOptions="FillAndExpand"
-                Text="📖 Instructions"
+                Text="Instructions 📖"
                 TextColor="White" />
 
         </VerticalStackLayout>

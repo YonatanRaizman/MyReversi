@@ -13,10 +13,17 @@ namespace MyReversi.ModelsLogic
         public Game()
         {
             HostName = new User().Name;
+            IsHostUser = true;
             Created = DateTime.Now;
         }
 
-        public override void SetDocument(Action<System.Threading.Tasks.Task> OnComplete)
+        protected override void UpdateStatus()
+        {
+            Status.CurrentStatus = IsHostUser && IsHostTurn || !IsHostUser && !IsHostTurn ?
+                GameStatus.Status.Play : GameStatus.Status.Wait;
+        }
+
+        public override void SetDocument(Action<Task> OnComplete)
         {
             Id = fbd.SetDocument(this, Keys.GamesCollection, Id, OnComplete);
         }
@@ -42,6 +49,7 @@ namespace MyReversi.ModelsLogic
         {
             ilr = fbd.AddSnapshotListener(Keys.GamesCollection, Id, OnChange);
         }
+
         public override void RemoveSnapshotListener()
         {
             ilr?.Remove();
@@ -62,6 +70,7 @@ namespace MyReversi.ModelsLogic
                 GuestName = updatedGame.GuestName;
                 IsFull = updatedGame.IsFull;
                 OnGameChanged?.Invoke(this, EventArgs.Empty);
+
             }
         }
 
@@ -70,8 +79,12 @@ namespace MyReversi.ModelsLogic
             fbd.DeleteDocument(Keys.GamesCollection, Id, OnComplete);
         }
 
-        public override void InitGrid(Grid board)
+        public override void InitGame(Grid board)
         {
+            gameBoard = new string[8,8];
+            gameButtons = new IndexedButton[8,8];
+            IndexedButton btn;
+
             for (int i = 0; i < 8; i++)
             {
                 board.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -82,23 +95,37 @@ namespace MyReversi.ModelsLogic
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    IndexedButton button = new(i, j);
+                    btn = new IndexedButton(i, j);
+                    gameButtons[i, j] = btn;
+                    btn.Clicked += OnButtonClicked;
+                    board.Add(btn, j, i);
 
-                    button.BackgroundColor = Color.FromArgb("#008000");
+                    btn.BackgroundColor = Color.FromArgb("#008000");
 
-                    button.BorderColor = Colors.Black;
+                    btn.BorderColor = Colors.Black;
 
-                    button.BorderWidth = 1;
-                    button.CornerRadius = 6;
+                    btn.BorderWidth = 1;
+                    btn.CornerRadius = 6;
 
-                    button.BorderColor = Colors.White;
-                    button.BorderWidth = 1;
-
-                    board.Add(button, j, i);
+                    btn.BorderColor = Colors.White;
+                    btn.BorderWidth = 1;
                 }
             }
         }
 
+        protected override void OnButtonClicked(object? sender, EventArgs e)
+        {
+            IndexedButton? btn = sender as IndexedButton;
 
+            if (btn != null)
+            {
+                Play(btn!.RowIndex, btn.ColumnIndex);
+            }
+        }
+
+        protected override void Play(int rowIndex, int columnIndex)
+        {
+            gameButtons![rowIndex, columnIndex].Text = IsHostUser ? "⚫" : "⚪";
+        }
     }
 }

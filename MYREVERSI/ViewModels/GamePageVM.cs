@@ -13,7 +13,7 @@ namespace MyReversi.ViewModels
         public GamePageVM(Game game, Grid board)
         {
             game.OnGameChanged += OnGameChanged;
-            game.InitGrid(board);
+            game.InitGame(board);
             this.game = game;
             if (!game.IsHostUser)
                 game.UpdateGuestUser(OnComplete);
