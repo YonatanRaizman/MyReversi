@@ -3,13 +3,12 @@ using Plugin.CloudFirestore;
 
 namespace MyReversi.ModelsLogic
 {
-    public partial class Game : GameModel
+    public class Game : GameModel
     {
         public override string OpponentName => IsHostUser? GuestName : HostName;
         protected override GameStatus Status => IsHostUser && IsHostTurn || !IsHostUser && !IsHostTurn ?
             new GameStatus { CurrentStatus = GameStatus.Status.Play } :
             new GameStatus { CurrentStatus = GameStatus.Status.Wait };
-
 
         public Game()
         {
@@ -73,35 +72,33 @@ namespace MyReversi.ModelsLogic
 
         public override void InitGrid(Grid board)
         {
-            board.RowDefinitions.Clear();
-            board.ColumnDefinitions.Clear();
-            board.BackgroundColor = Colors.Black;
-
-            board.Padding = new Thickness(5);
-
-            board.RowSpacing = 2;
-            board.ColumnSpacing = 2;
+            for (int i = 0; i < 8; i++)
+            {
+                board.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                board.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            }
 
             for (int i = 0; i < 8; i++)
             {
-                board.RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
-                board.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
-            }
-
-            for (int i = 0; i < 8; i++) 
-            {
-                for (int j = 0; j < 8; j++) 
+                for (int j = 0; j < 8; j++)
                 {
                     IndexedButton button = new(i, j);
 
-                    button.BackgroundColor = Color.FromArgb("#006400");
+                    button.BackgroundColor = Color.FromArgb("#008000");
 
-                    button.CornerRadius = 0;
-                    button.BorderWidth = 0;  
+                    button.BorderColor = Colors.Black;
+
+                    button.BorderWidth = 1;
+                    button.CornerRadius = 6;
+
+                    button.BorderColor = Colors.White;
+                    button.BorderWidth = 1;
 
                     board.Add(button, j, i);
                 }
             }
         }
+
+
     }
 }
