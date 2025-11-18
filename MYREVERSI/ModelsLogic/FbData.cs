@@ -51,7 +51,6 @@ namespace MyReversi.ModelsLogic
                 return facl.User.Uid;
             }
         }
-
         public override async void UpdateFields(string collectonName, string id, Dictionary<string, object> dict, Action<Task> OnComplete)
         {
             IDocumentReference dr = fdb.Collection(collectonName).Document(id);

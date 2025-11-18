@@ -3,27 +3,19 @@ using Plugin.CloudFirestore;
 
 namespace MyReversi.ModelsLogic
 {
-    public class Game : GameModel
+    public partial class Game : GameModel
     {
         public override string OpponentName => IsHostUser? GuestName : HostName;
-        protected override GameStatus Status => IsHostUser && IsHostTurn || !IsHostUser && !IsHostTurn ?
-            new GameStatus { CurrentStatus = GameStatus.Status.Play } :
-            new GameStatus { CurrentStatus = GameStatus.Status.Wait };
 
-        public Game()
+        protected override GameStatus Status => _status;
+
+        internal Game()
         {
             HostName = new User().Name;
-            IsHostUser = true;
             Created = DateTime.Now;
         }
 
-        protected override void UpdateStatus()
-        {
-            Status.CurrentStatus = IsHostUser && IsHostTurn || !IsHostUser && !IsHostTurn ?
-                GameStatus.Status.Play : GameStatus.Status.Wait;
-        }
-
-        public override void SetDocument(Action<Task> OnComplete)
+        public override void SetDocument(Action<System.Threading.Tasks.Task> OnComplete)
         {
             Id = fbd.SetDocument(this, Keys.GamesCollection, Id, OnComplete);
         }
@@ -49,7 +41,6 @@ namespace MyReversi.ModelsLogic
         {
             ilr = fbd.AddSnapshotListener(Keys.GamesCollection, Id, OnChange);
         }
-
         public override void RemoveSnapshotListener()
         {
             ilr?.Remove();
@@ -70,7 +61,6 @@ namespace MyReversi.ModelsLogic
                 GuestName = updatedGame.GuestName;
                 IsFull = updatedGame.IsFull;
                 OnGameChanged?.Invoke(this, EventArgs.Empty);
-
             }
         }
 
@@ -81,10 +71,6 @@ namespace MyReversi.ModelsLogic
 
         public override void InitGame(Grid board)
         {
-            gameBoard = new string[8,8];
-            gameButtons = new IndexedButton[8,8];
-            IndexedButton btn;
-
             for (int i = 0; i < 8; i++)
             {
                 board.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -95,37 +81,61 @@ namespace MyReversi.ModelsLogic
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    btn = new IndexedButton(i, j);
-                    gameButtons[i, j] = btn;
-                    btn.Clicked += OnButtonClicked;
-                    board.Add(btn, j, i);
+                    IndexedButton button = new(i, j);
 
-                    btn.BackgroundColor = Color.FromArgb("#008000");
+                    button.BackgroundColor = Color.FromArgb("#008000");
 
-                    btn.BorderColor = Colors.Black;
+                    button.BorderColor = Colors.Black;
 
-                    btn.BorderWidth = 1;
-                    btn.CornerRadius = 6;
+                    button.BorderWidth = 1;
+                    button.CornerRadius = 6;
 
-                    btn.BorderColor = Colors.White;
-                    btn.BorderWidth = 1;
+                    button.BorderColor = Colors.White;
+                    button.BorderWidth = 1;
+
+                    board.Add(button, j, i);
                 }
             }
         }
 
         protected override void OnButtonClicked(object? sender, EventArgs e)
         {
-            IndexedButton? btn = sender as IndexedButton;
-
-            if (btn != null)
+            if (Status.CurrentStatus == GameStatus.Statuses.Play)
             {
-                Play(btn!.RowIndex, btn.ColumnIndex);
+                IndexedButton? btn = sender as IndexedButton;
+                if (btn!.Text == string.Empty)
+                    Play(btn!.RowIndex, btn.ColumnIndex, true);
             }
         }
 
-        protected override void Play(int rowIndex, int columnIndex)
+        protected override void Play(int rowIndex, int columnIndex, bool MyMove)
         {
-            gameButtons![rowIndex, columnIndex].Text = IsHostUser ? "⚫" : "⚪";
+            gameButtons![rowIndex, columnIndex].Text = nextPlay;
+            gameBoard![rowIndex, columnIndex] = nextPlay;
+            nextPlay = nextPlay == Strings.blackDisc ? Strings.whiteDisc : Strings.blackDisc;
+            if (MyMove)
+            {
+                Move[0] = rowIndex;
+                Move[1] = columnIndex;
+                Status.UpdateStatus();
+                IsHostTurn = !IsHostTurn;
+                UpdateFbMove();
+            }
+        }
+
+        protected override void UpdateFbMove()
+        {
+            Dictionary<string, object> dict = new()
+            {
+                { nameof(Move), Move },
+                { nameof(IsHostTurn), IsHostTurn }
+            };
+            fbd.UpdateFields(Keys.GamesCollection, Id, dict, OnComplete);
+        }
+
+        protected override void UpdateStatus()
+        {
+            throw new NotImplementedException();
         }
     }
 }
