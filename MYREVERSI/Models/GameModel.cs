@@ -33,6 +33,12 @@ namespace MyReversi.Models
         public string MyName { get; set; } = new User().Name;
         [Ignored]
         public bool IsHostUser { get; set; }
+        private static readonly int[,] Directions = new int[,]
+        {
+            { -1, -1 }, { -1, 0 }, { -1, 1 },
+            {  0, -1 },            {  0, 1 },
+            {  1, -1 }, {  1, 0 }, {  1, 1 }
+        };
         public abstract void SetDocument(Action<System.Threading.Tasks.Task> OnComplete);
         public abstract void RemoveSnapshotListener();
         public abstract void AddSnapshotListener();
@@ -42,5 +48,8 @@ namespace MyReversi.Models
         protected abstract void OnButtonClicked(object? sender, EventArgs e);
         protected abstract void Play(int rowIndex, int columnIndex, bool MyMove);
         protected abstract void UpdateFbMove();
+        //protected abstract bool IsLegalMove(int row, int col, string disc);
+        //protected abstract List<(int r, int c)> GetFlips(int row, int col, string disc);
+        //protected abstract void ApplyMove(int row, int col, string disc);
     }
 }

@@ -2,7 +2,7 @@
 {
     public class GameStatus
     {
-        private readonly string[] msgs = [Strings.WaitMessage, Strings.PlayMessage];
+        private readonly string[] msgs = [Strings.PlayMessage, Strings.WaitMessage];
         public enum Statuses { Wait, Play }
         public Statuses CurrentStatus { get; set; } = Statuses.Wait;
         public string StatusMessage => msgs[(int)CurrentStatus];
