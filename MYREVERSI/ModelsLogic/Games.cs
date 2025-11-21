@@ -11,7 +11,9 @@ namespace MyReversi.ModelsLogic
             IsBusy = true;
             currentGame = new()
             {
-                IsHostUser = true
+                IsHostUser = true,
+                HostName = new User().Name,
+                Created = DateTime.Now
             };
             currentGame.OnGameDeleted += OnGameDeleted;
             currentGame.SetDocument(OnComplete);

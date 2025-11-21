@@ -8,9 +8,24 @@
     x:DataType="vm:GamePageVM">
 
     <VerticalStackLayout>
-        <Label HorizontalOptions="Center" Text="{Binding OpponentName}" TextColor="Black"/>
-        <Label HorizontalOptions="Center" Text="{Binding StatusMessage}" Margin="50" TextColor="Black"/>
-        <Grid x:Name="grdBoard" HorizontalOptions="Center" RowSpacing="1" ColumnSpacing="1" VerticalOptions="Center"/>
-        <Label HorizontalOptions="Center" Text="{Binding MyName}" TextColor="Black" />
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding OpponentName}"
+            TextColor="Black" />
+        <Label
+            Margin="50"
+            HorizontalOptions="Center"
+            Text="{Binding StatusMessage}"
+            TextColor="Black" />
+        <Grid
+            x:Name="grdBoard"
+            ColumnSpacing="1"
+            HorizontalOptions="Center"
+            RowSpacing="1"
+            VerticalOptions="Center" />
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding MyName}"
+            TextColor="Black" />
     </VerticalStackLayout>
 </ContentPage>

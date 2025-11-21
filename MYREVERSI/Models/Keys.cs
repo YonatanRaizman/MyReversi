@@ -19,5 +19,6 @@
         public const string InvalidLoginErrorMessage = "Email or password is incorrect";
         public const string ForgotYourPassword = "Forgot Your Password?";
         public const string GamesCollection = "Games";
+        public const int  NoMove = -1;
     }
 }

@@ -13,7 +13,7 @@ namespace MyReversi.ViewModels
         public GamePageVM(Game game, Grid board)
         {
             game.OnGameChanged += OnGameChanged;
-            game.InitGame(board);
+            game.Init(board);
             this.game = game;
             if (!game.IsHostUser)
                 game.UpdateGuestUser(OnComplete);
@@ -28,6 +28,7 @@ namespace MyReversi.ViewModels
         {
             if (!task.IsCompletedSuccessfully)
                 Toast.Make(Strings.JoinGameErr, CommunityToolkit.Maui.Core.ToastDuration.Long, 14);
+
         }
 
         public void AddSnapshotListener()
