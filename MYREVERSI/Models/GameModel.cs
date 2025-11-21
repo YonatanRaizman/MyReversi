@@ -9,10 +9,6 @@ namespace MyReversi.Models
         protected FbData fbd = new();
         [Ignored]
         protected IListenerRegistration? ilr;
-        protected GameStatus _status = new();
-        protected string[,]? gameBoard;
-        protected IndexedButton[,]? gameButtons;
-        protected string nextPlay = Strings.blackDisc;
         [Ignored]
         public EventHandler? OnGameChanged;
         [Ignored]
@@ -28,7 +24,6 @@ namespace MyReversi.Models
 
         public bool IsFull { get; set; }
         public bool IsHostTurn { get; set; } = false;
-        public List<int> Move { get; set; } = [-1, -1];
         [Ignored]
 
         public abstract string OpponentName { get;}
@@ -44,10 +39,6 @@ namespace MyReversi.Models
         public abstract void AddSnapshotListener();
         public abstract void RemoveSnapshotListener();
         public abstract void DeleteDocument(Action<System.Threading.Tasks.Task> OnComplete);
-        public abstract void InitGame(Grid board);
-        protected abstract void UpdateStatus();
-        protected abstract void OnButtonClicked(object? sender, EventArgs e);
-        protected abstract void Play(int rowIndex, int columnIndex, bool MyMove);
-        protected abstract void UpdateFbMove();
+        public abstract void InitGrid(Grid board);
     }
 }

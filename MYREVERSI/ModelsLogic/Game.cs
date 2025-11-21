@@ -7,8 +7,6 @@ namespace MyReversi.ModelsLogic
     {
         public override string OpponentName => IsHostUser? GuestName : HostName;
 
-        protected override GameStatus Status => _status;
-
         internal Game()
         {
             HostName = new User().Name;
@@ -69,7 +67,7 @@ namespace MyReversi.ModelsLogic
             fbd.DeleteDocument(Keys.GamesCollection, Id, OnComplete);
         }
 
-        public override void InitGame(Grid board)
+        public override void InitGrid(Grid board)
         {
             for (int i = 0; i < 8; i++)
             {
@@ -98,44 +96,6 @@ namespace MyReversi.ModelsLogic
             }
         }
 
-        protected override void OnButtonClicked(object? sender, EventArgs e)
-        {
-            if (Status.CurrentStatus == GameStatus.Statuses.Play)
-            {
-                IndexedButton? btn = sender as IndexedButton;
-                if (btn!.Text == string.Empty)
-                    Play(btn!.RowIndex, btn.ColumnIndex, true);
-            }
-        }
 
-        protected override void Play(int rowIndex, int columnIndex, bool MyMove)
-        {
-            gameButtons![rowIndex, columnIndex].Text = nextPlay;
-            gameBoard![rowIndex, columnIndex] = nextPlay;
-            nextPlay = nextPlay == Strings.blackDisc ? Strings.whiteDisc : Strings.blackDisc;
-            if (MyMove)
-            {
-                Move[0] = rowIndex;
-                Move[1] = columnIndex;
-                Status.UpdateStatus();
-                IsHostTurn = !IsHostTurn;
-                UpdateFbMove();
-            }
-        }
-
-        protected override void UpdateFbMove()
-        {
-            Dictionary<string, object> dict = new()
-            {
-                { nameof(Move), Move },
-                { nameof(IsHostTurn), IsHostTurn }
-            };
-            fbd.UpdateFields(Keys.GamesCollection, Id, dict, OnComplete);
-        }
-
-        protected override void UpdateStatus()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
